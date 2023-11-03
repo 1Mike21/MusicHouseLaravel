@@ -1,0 +1,15 @@
+@font-face {
+  font-family: Trueno;
+  src: url(../fonts/Trueno-wml2.otf);
+}
+
+body {
+  background: #000;
+  color: white;
+  font-family: Trueno, sans-serif;
+}
+
+#map {
+  max-width: 1440px;
+  height: 723px;
+}
