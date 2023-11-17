@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SQLController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +14,9 @@ use App\Http\Controllers\SQLController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [ProductController::class, 'showCarousel'])->name('index');
 
-Route::get('/catalog', function () {
-    return view('catalog');
-})->name('catalog');
+Route::get('/catalog', [ProductController::class, 'showProducts'])->name('catalog');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -41,5 +37,3 @@ Route::get('/registration', function () {
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-
-Route::get('/sql', [SQLController::class, 'index']);
