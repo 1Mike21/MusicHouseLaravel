@@ -17,12 +17,12 @@ class Order extends Model
 			'sum',
 		];
 
-	public function users(): BelongsTo
+	public function user(): BelongsTo
 	{
-		return $this->belongsTo(User::class);
+		return $this->belongsTo(User::class, 'user_id', 'id');
 	}
 
 	public function products(): BelongsToMany {
-		return $this->belongsToMany(Product::class);
+		return $this->belongsToMany(Product::class, 'order_product', 'order_id', 'product_id');
 	}
 }

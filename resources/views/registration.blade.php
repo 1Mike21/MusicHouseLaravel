@@ -1,9 +1,9 @@
 @extends('layout')
 
 @section('content')
-  <div class="row mt-2 mb-4 justify-content-center">
+  <div class="row mt-5 justify-content-center">
     <div class="col-4 text-center">
-      <h1 class="text-center mb-4">Регистрация</h1>
+      <h1 class="mb-4">Регистрация</h1>
       <form action="">
         <div class="input-group mb-4">
           <label class="form-label me-4" for="firstname">Имя:</label>

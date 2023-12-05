@@ -13,6 +13,7 @@ class Product extends Model
 
 		protected $fillable = [
 			'title',
+			'description',
 			'img_path',
 			'price',
 			'model',
@@ -22,13 +23,13 @@ class Product extends Model
 			'category_id',
 		];
 
-		public function categories(): BelongsTo {
-			return $this->belongsTo(Category::class);
+		public function category(): BelongsTo {
+			return $this->belongsTo(Category::class, 'category_id', 'id');
 		}
 
 		public function orders(): BelongsToMany
 		{
-			return $this->belongsToMany(Order::class);
+			return $this->belongsToMany(Order::class, 'order_product', 'product_id', 'order_id');
 		}
 
 }

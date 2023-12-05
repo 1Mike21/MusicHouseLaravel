@@ -21,7 +21,7 @@
     </div>
   </div>
   <!-- Slider -->
-  <div class="row mx-auto mt-3 w-100 mb-5">
+  <div class="row mx-auto mt-3 w-75 mb-5">
     <div class="col-12">
       <div id="carouselExampleFade" class="carousel slide carousel-fade">
         <div class="carousel-inner w-50 mx-auto">

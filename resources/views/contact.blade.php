@@ -14,3 +14,7 @@
 	</div>
 @endsection
 
+@section('scripts')
+	<script src="https://api-maps.yandex.ru/2.1/?apikey=b91dc134-a330-4955-ae59-356b595e0d00&lang=ru_RU"></script>
+@endsection
+

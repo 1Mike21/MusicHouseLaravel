@@ -18,7 +18,8 @@ return new class extends Migration
 									->onUpdate('cascade')
 									->onDelete('cascade');
 						$table->string('title');
-						$table->string('img_patg');
+						$table->text('description');
+						$table->string('img_path');
 						$table->integer('price');
 						$table->integer('year');
 						$table->string('model');
