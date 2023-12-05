@@ -58,7 +58,7 @@ class ProductController extends Controller
      * Display the specified resource.
      */
     public function show(Product $product)
-    {
+    { 
         $product = Product::find($product->id);
 				return view('products.show', compact('product'));
     }

@@ -6,7 +6,9 @@
       <h1>Корзина</h1>
     </div>
   </div>
-  <!-- Table with bought instruments -->
+	<div class="row">
+		<div class="col-12">
+			<!-- Table with bought instruments -->
   <table class="table mt-5">
     <tbody>
       <tr class="d-flex justify-content-center text-center">
@@ -28,4 +30,18 @@
       </tr>
     </tbody>
   </table>
+		</div>
+	</div>
+	<div class="row justify-content-center mt-4">
+		<div class="col-4">
+			<form method="POST" action="">
+				@csrf
+        <div class="input-group mb-3">
+          <input type="password" name="password" id="password" class="form-control" required
+            placeholder = "Введите пароль">
+						<button type="submit" class="btn btn-success">Подтвердить</button>
+        </div>
+			</form>
+		</div>
+	</div>
 @endsection

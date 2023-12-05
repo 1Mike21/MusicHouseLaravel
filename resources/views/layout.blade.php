@@ -32,13 +32,22 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('contact') }}">Контакты</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('orders.index') }}">Заказы</a>
+          </li>
         </ul>
         <ul class="navbar-nav me-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="{{route('registration')}}">Регистрация</a>
+            <a class="nav-link" href="{{route('regForm')}}">Регистрация</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('auth')}}">Войти</a>
+            <a class="nav-link" href="{{route('loginForm')}}">Войти</a>
+          </li>
+          <li class="nav-item">
+						<form action="{{route('logout')}}" method="POST">
+							@csrf
+							<button type="submit" class="btn btn-success">Выход</button>
+						</form>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{route('cart')}}"><img class="position-relative" src="{{ asset('../images/cart.svg')}}">
@@ -51,6 +60,12 @@
       </div>
     </div>
   </nav>
+	@if (Session::has('info'))
+		<div class="alert alert-success">{{session('info')}}</div>
+	@endif
+	@if (isset($info))
+		<div class="alert alert-success">{{$info}}</div>
+	@endif
   <!-- Main content -->
   <main class="container">
 		@yield('content')

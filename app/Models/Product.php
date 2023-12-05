@@ -19,7 +19,7 @@ class Product extends Model
 			'model',
 			'country',
 			'year',
-			'qty',
+			'quantity',
 			'category_id',
 		];
 
