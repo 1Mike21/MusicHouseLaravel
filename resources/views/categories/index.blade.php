@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
   <div class="row">
@@ -14,8 +14,14 @@
           @foreach ($categories as $category)
             <tr>
               <th>{{ $category->title }}</th>
-              <td><a href="{{ route('categories.edit', $category) }}" class="btn btn-success">&#9998;</a></td>
-              <td><a href="{{ route('categories.destroy', $category) }}" class="btn btn-danger">&#10006;</a></td>
+              <td><a href="{{route('categories.edit', $category)}}" class="btn btn-success">&#9998;</a></td>
+							<td>
+								<form method="POST" action="{{route('categories.destroy', $category)}}">
+									@csrf
+									@method('DELETE')
+									<button type="submit" class="btn btn-danger">&#10006;</button>
+								</form>
+							</td>
             </tr>
           @endforeach
         </tbody>

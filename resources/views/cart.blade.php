@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
   <div class="row">
@@ -12,21 +12,28 @@
   <table class="table mt-5">
     <tbody>
       <tr class="d-flex justify-content-center text-center">
-        <td><img src="../images/guitar_1.jpg"></td>
-        <td class="d-flex align-items-center pe-5">
-          <h5 class="fw-bold">Bamboo GA-34 Indie</h5>
-        </td>
-        <td class="d-flex align-items-center pe-5">
-          <div class="input_number">
-            <button id="btn_increment" class="btn btn-danger rounded-circle fw-bold">-</button>
-            <input id="quantity" class="w-25 mx-3 text-center" type="number" value="1" min="1"
-              max="999">
-            <button id="btn_decrement" class="btn btn-danger rounded-circle fw-bold">+</button>
-          </div>
-        </td>
-        <td class="d-flex align-items-center pe-5">
-          <h5>12 990 р.</h5>
-        </td>
+				@forelse ($order->products as $product)
+        	<td><img src="{{asset($product->img_path)}}"></td>
+					<td class="d-flex align-items-center pe-5">
+						<h5 class="fw-bold">{{$product->title}}</h5>
+					</td>
+					<td class="d-flex align-items-center pe-5">
+						<h5>{{$product->price}}</h5>
+					</td>
+					<td class="d-flex align-items-center pe-5">
+						<div class="quantity">
+							<button id="btn_increment" class="btn btn-danger rounded-circle fw-bold">-</button>
+							<input id="quantity" class="w-25 mx-3 text-center" type="number" value="{{$product->pivot->quantity}}" min="0"
+								max="{{$product->quantity}}">
+							<button id="btn_decrement" class="btn btn-danger rounded-circle fw-bold">+</button>
+						</div>
+        	</td>
+					<td class="d-flex align-items-center pe-5">
+						<h5>Итого: {{$product->pivot}}</h5>
+					</td>
+				@empty
+					<p class="text-danger mt-5 text-center fs-3">В корзине пока пусто.</p>
+				@endforelse
       </tr>
     </tbody>
   </table>

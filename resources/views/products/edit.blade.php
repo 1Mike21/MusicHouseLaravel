@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
   <div class="row">
@@ -17,8 +17,7 @@
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Описание:</label>
-          <textarea class="form-control" name="description" id="description" rows="3" placeholder="Добавьте описание"
-            required>{{ $product->description }}</textarea>
+          <textarea class="form-control" name="description" id="description" rows="3" placeholder="Добавьте описание" required>{{ $product->description }}</textarea>
         </div>
         <div class="mb-3">
           <label for="price" class="form-label">Цена:</label>

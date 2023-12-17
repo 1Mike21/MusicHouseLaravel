@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
   <div class="row">
@@ -31,9 +31,11 @@
             <button type="submit" class="btn btn-success ms-3 p-2">Применить</button>
           </form>
         </div>
-        <div class="col-5 text-end">
-          <a href="{{ route('products.create') }}" class="btn btn-success p-2">Добавить новый товар</a>
-        </div>
+				@if (Auth::check() && Auth::user()->is_admin)
+					<div class="col-5 text-end">
+						<a href="{{ route('products.create') }}" class="btn btn-success p-2">Добавить новый товар</a>
+					</div>
+				@endif
       </div>
       {{-- Tab content --}}
       <div class="tab-content mb-5" id="instrumentTabContent">
@@ -49,16 +51,20 @@
                         class="card-img-top w-100" alt="..."></a>
                     <div class="card-body d-flex flex-column text-center">
                       <h5 class="card-title fw-bold">{{ $product->title }}</h5>
-                      <form class="mt-auto" action="{{ route('products.destroy', $product) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <a class="btn btn-success" href="{{ route('products.edit', $product) }}">Изменить</a>
-                        <button type="submit" class="btn btn-danger">Удалить</button>
-                      </form>
+											@if (Auth::check() && Auth::user()->is_admin)
+												<form class="mt-auto" action="{{ route('products.destroy', $product) }}" method="POST">
+													@csrf
+													@method('DELETE')
+													<a class="btn btn-success" href="{{ route('products.edit', $product) }}">Изменить</a>
+													<button type="submit" class="btn btn-danger">Удалить</button>
+												</form>
+											@endif
                     </div>
                     <div class="card-footer text-center d-flex justify-content-between align-items-center">
                       <h5>{{ $product->price }} ₽</h5>
-                      <button type="button" class="btn btn-success w-50">В корзину</button>
+											@if (Auth::check() && !Auth::user()->is_admin)
+                      	<a href="{{route('cart.store', ['product_id'=>$product->id])}}" class="btn btn-success w-50">В корзину</a>
+											@endif
                     </div>
                   </div>
                 </div>

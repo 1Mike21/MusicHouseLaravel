@@ -10,6 +10,10 @@ use function Termwind\render;
 
 class ProductController extends Controller
 {
+		public function __construct()
+		{
+			$this->middleware('admin')->except(['index', 'show', 'filter']);
+		}
     /**
      * Display a listing of the resource.
      */
@@ -58,7 +62,7 @@ class ProductController extends Controller
      * Display the specified resource.
      */
     public function show(Product $product)
-    { 
+    {
         $product = Product::find($product->id);
 				return view('products.show', compact('product'));
     }

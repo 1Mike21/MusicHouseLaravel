@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 	<div class="row justify-content-between mt-5 align-items-center">
@@ -8,7 +8,7 @@
 							<p class="h3 mt-4 mb-4">8 (986) 617-12-26</p>
 							<p class="h3">musichouse@gmail.com</p>
 			</div>
-			<div class="col-6">
+			<div class="col-6 mb-5">
 					<div id="map"></div>
 			</div>
 	</div>
