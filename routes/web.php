@@ -27,7 +27,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 	Route::resource('/orders', AdminOrderController::class);
 	Route::get('/', function () {
 		return view('layouts.admin');
-	})->name('admin');
+	});
 });
 
 Route::resource('/products', ProductController::class);

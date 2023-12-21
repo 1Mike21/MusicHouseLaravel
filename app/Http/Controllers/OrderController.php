@@ -77,6 +77,9 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+			$order = Order::find($order->id);
+			$order->delete();
+
+			return redirect()->route('products.index')->with(['info' => "Заказ удален"]);
     }
 }

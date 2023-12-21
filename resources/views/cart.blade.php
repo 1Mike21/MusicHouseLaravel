@@ -11,8 +11,8 @@
       <!-- Table with bought instruments -->
       <table class="table mt-5">
         <tbody>
+					@forelse ($order->products as $product)
           <tr class="d-flex justify-content-center text-center">
-            @forelse ($order->products as $product)
               <td><img src="{{ asset($product->img_path) }}"></td>
               <td class="d-flex align-items-center pe-5">
                 <h5 class="fw-bold">{{ $product->title }}</h5>
@@ -21,15 +21,14 @@
                 <h5>{{ $product->price }} ₽</h5>
               </td>
               <td class="d-flex align-items-center pe-5">
-                <div class="quantity">
-                  <button id="btn_increment" class="btn btn-danger rounded-circle fw-bold">-</button>
-                  <input id="quantity" class="w-25 mx-3 text-center" type="number"
-                    value="{{ $product->pivot->quantity }}" min="0" max="{{ $product->quantity }}">
-                  <button id="btn_decrement" class="btn btn-danger rounded-circle fw-bold">+</button>
-                </div>
+								<form action="{{route('cart.change', ['product_id'=>$product->id])}}" method="POST">
+									@csrf
+									<input name="quantity" type="number" value="{{ $product->pivot->quantity }}" min="0" max="{{ $product->quantity }}" class="w-25 mx-3 text-center">
+									<button type="submit" class="btn btn-success">Изменить</button>
+								</form>
               </td>
               <td class="d-flex align-items-center pe-5">
-                <h5>Итого: {{ $product->pivot->qty * $product->price }} ₽</h5>
+                <h5>{{ $product->pivot->quantity * $product->price }} ₽</h5>
               </td>
               <td>
                 <form class="pt-5" action="{{ route('cart.destroy', ['id'=>$product->id]) }}" method="POST">
@@ -40,8 +39,8 @@
               </td>
             @empty
               <p class="text-danger mt-5 text-center fs-3">В корзине пока пусто.</p>
+						</tr>
             @endforelse
-          </tr>
         </tbody>
       </table>
     </div>

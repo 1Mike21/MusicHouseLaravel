@@ -3,37 +3,33 @@
 @section('content')
   <div class="row">
     <div class="col-12 text-center pt-4">
-      <h1>Заказы</h1>
+      <h1>Мои заказы</h1>
     </div>
   </div>
   <div class="row justify-content-center">
     <div class="col-12">
-      <!-- Table with orders -->
-      <table class="table mt-5">
-        <tbody>
-          <tr class="d-flex justify-content-center text-center">
-            @forelse ($orders as $order)
-							@foreach ($order->products as $product)
-								<td><img src="{{asset($product->img_path)}}"></td>
-								<td class="d-flex align-items-center pe-5">
-									<h5 class="fw-bold">{{$product->title}}</h5>
-								</td>
-							@endforeach
-							<td class="d-flex align-items-center pe-5">
-								<h5>{{$order->status}}</h5>
-							</td>
-							<td class="d-flex align-items-center pe-5">
-								<h5>{{$order->created_at}}</h5>
-							</td>
-							<td class="d-flex align-items-center pe-5">
-								form
-							</td>
-						@empty
-							<p class="text-danger mt-5 text-center fs-3">Заказов еще нет.</p>
-						@endforelse
-          </tr>
-        </tbody>
-      </table>
+      @forelse ($orders as $order)
+        <div class="bg-black p-3">
+          <h5 class="fw-bold">Товары:</h5>
+          <ol>
+            @foreach ($order->products as $product)
+              <li>{{ $product->title }}</li>
+            @endforeach
+          </ol>
+          <h5>Статус: {{ $order->status }}</h5>
+          <h5>Дата заказа: {{ $order->created_at }}</h5>
+          @if ($order->status == 'Новый')
+            <form class="mt-3" action="{{ route('orders.destroy', $order) }}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger">Отменить заказ</button>
+            </form>
+          @endif
+          <hr>
+        </div>
+      @empty
+        <p class="text-danger mt-5 text-center fs-3">Заказов еще нет.</p>
+      @endforelse
     </div>
   </div>
 @endsection

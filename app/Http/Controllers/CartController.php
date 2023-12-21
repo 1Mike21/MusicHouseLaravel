@@ -32,7 +32,6 @@ class CartController extends Controller
 	public function change(Request $request, $product_id) {
 		$order = Auth::user()->orders()->firstWhere('status', 'В корзине');
 		$order->products()->updateExistingPivot($product_id, ['quantity'=>$request->quantity]);
-
 		return redirect()->route('cart.index');
 	}
 

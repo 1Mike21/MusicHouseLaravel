@@ -23,12 +23,12 @@
           </li>
           @if(Auth::check() && !Auth::user()->is_admin)
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('orders.index') }}">Заказы</a>
+              <a class="nav-link" href="{{ route('orders.index') }}">Мои заказы</a>
             </li>
           @endif
 					@if (Auth::check() && Auth::user()->is_admin)
 						<li class="nav-item">
-							<a class="nav-link" href="{{ route('admin.admin') }}">Админпанель</a>
+							<a class="nav-link" href="{{ route('admin.') }}">Админпанель</a>
 						</li>
 					@endif
         </ul>
@@ -56,9 +56,6 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('cart.index') }}"><img class="position-relative"
                   src="{{ asset('img/cart.svg') }}">
-                <span class=" top-0 start-100 translate-middle badge rounded-pill bg-success">1
-                  <span class="visually-hidden">количество товаров в корзине</span>
-                </span>
               </a>
             </li>
           @endif

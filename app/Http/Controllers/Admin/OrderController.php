@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
 			$orders = Order::whereNot('status', 'В корзине')->get();
-        return view('admin.orders.index', compact('orders'));
+			return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -56,7 +56,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+			$order = Order::find($order->id);
+			$order->status = $request->status;
+			$order->save();
+			return back()->with('info', 'Статус успешно сменен');
     }
 
     /**
