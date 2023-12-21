@@ -13,24 +13,26 @@
             <a class="nav-link" href="{{ route('carousel') }}" aria-current="page">О нас<span
                 class="visually-hidden">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('products.index') }}">Каталог</a>
-          </li>
-          @if (Auth::check() && Auth::user()->is_admin)
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('categories.index') }}">Категории</a>
-            </li>
-          @endif
+					@if (Auth::check() && !Auth::user()->is_admin)
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('products.index') }}">Каталог</a>
+						</li>
+					@endif
           <li class="nav-item">
             <a class="nav-link" href="{{ route('contact') }}">Контакты</a>
           </li>
-          @auth
+          @if(Auth::check() && !Auth::user()->is_admin)
             <li class="nav-item">
               <a class="nav-link" href="{{ route('orders.index') }}">Заказы</a>
             </li>
-          @endauth
+          @endif
+					@if (Auth::check() && Auth::user()->is_admin)
+						<li class="nav-item">
+							<a class="nav-link" href="{{ route('admin.admin') }}">Админпанель</a>
+						</li>
+					@endif
         </ul>
-        <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav me-auto mt-2 mt-lg-0 align-items-center">
           @guest
             <li class="nav-item">
               <a class="nav-link" href="{{ route('regForm') }}">Регистрация</a>
@@ -40,6 +42,9 @@
             </li>
           @endguest
           @auth
+						<li class="nav-item me-5">
+              Вы вошли как: {{Auth::user()->login}}
+            </li>
             <li class="nav-item">
               <form action="{{ route('logout') }}" method="POST">
                 @csrf

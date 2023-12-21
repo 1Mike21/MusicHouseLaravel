@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Авторизация')
 @section('content')
   <div class="row mt-5 justify-content-center align-items-center">
     <div class="col-4 text-center">

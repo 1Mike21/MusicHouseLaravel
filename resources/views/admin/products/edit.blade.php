@@ -1,12 +1,12 @@
-@extends('layouts.app')
-@section('title', 'Редактирование товара: ' $product->title)
+@extends('layouts.admin')
+@section('title', 'Редактирование товара {{$product->title}}')
 @section('content')
   <div class="row">
 		<div class="col-12 text-center pt-4">
       <h1>Редактирование товара</h1>
     </div>
     <div class="col-12">
-      <form method="POST" class="w-50 mx-auto mt-3 mb-4" action="{{ route('products.update', $product) }}"
+      <form method="POST" class="w-50 mx-auto mt-3 mb-4" action="{{ route('admin.products.update', $product) }}"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')

@@ -17,7 +17,7 @@ return new class extends Migration
 									->constrained()
 									->onUpdate('cascade')
 									->onDelete('cascade');
-						$table->integer('sum');
+						$table->integer('sum')->nullable();
 						$table->string('status')->default('В корзине');
 						$table->string('comment')->nullable();
             $table->timestamps();

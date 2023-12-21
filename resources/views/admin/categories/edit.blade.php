@@ -1,10 +1,10 @@
-@extends('layouts.app')
-
+@extends('layouts.admin')
+@section('title', 'Редактирование категории: ' $category->title)
 @section('content')
   <div class="row min-vh-100 align-items-center">
     <div class="col-12">
       <h1 class="text-center mb-4">Редактирование категории</h1>
-      <form method="POST" class="w-50 mx-auto" action="{{ route('categories.update', $category) }}">
+      <form method="POST" class="w-50 mx-auto" action="{{ route('admin.categories.update', $category) }}">
         @csrf
         @method('PUT')
         <div class="mb-3">

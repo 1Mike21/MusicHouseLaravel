@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('title', 'Создание товара')
 @section('content')
   <div class="row">
@@ -6,7 +6,7 @@
       <h1>Добавление товара</h1>
     </div>
     <div class="col-12">
-      <form method="POST" class="w-50 mx-auto mt-3 mb-4" action="{{ route('products.store') }}"
+      <form method="POST" class="w-50 mx-auto mt-3 mb-4" action="{{ route('admin.products.store') }}"
         enctype="multipart/form-data">
         @csrf
         <div class="mb-3">

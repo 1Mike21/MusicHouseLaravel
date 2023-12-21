@@ -26,6 +26,19 @@ class CartController extends Controller
 			$order->products()->attach($product_id, ['quantity'=>1]);
 		}
 
-		return redirect()->back()->with(['info'=>"Товар {$product->title} добавлен в корзину"]);
+		return redirect()->back()->with(['info'=>"Товар успешно добавлен в корзину"]);
+	}
+
+	public function change(Request $request, $product_id) {
+		$order = Auth::user()->orders()->firstWhere('status', 'В корзине');
+		$order->products()->updateExistingPivot($product_id, ['quantity'=>$request->quantity]);
+
+		return redirect()->route('cart.index');
+	}
+
+	public function destroy($id) {
+		$order = Auth::user()->orders()->firstWhere('status', 'В корзине');
+		$order->products()->detach($id);
+		return redirect()->route('cart.index')->with(['info' => "Товар удален из корзины"]);
 	}
 }

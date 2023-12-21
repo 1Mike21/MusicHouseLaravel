@@ -1,19 +1,19 @@
 @extends('layouts.app')
-
+@section('title', 'Регистрация')
 @section('content')
   <div class="row mt-5 justify-content-center">
     <div class="col-4 text-center">
       <h1 class="mb-4">Регистрация</h1>
       <form method="POST" action="{{route('register')}}">
 				@csrf
+				<div class="input-group mb-4">
+					<label class="form-label me-4" for="surname">Фамилия:</label>
+					<input id="surname" class="form-control" value="{{old('surname')}}" name="surname" type="text" placeholder="Введите фамилию"
+						required>
+				</div>
         <div class="input-group mb-4">
           <label class="form-label me-4" for="name">Имя:</label>
           <input id="name" class="form-control" value="{{old('name')}}" name="name" type="text" placeholder="Введите имя" required>
-        </div>
-        <div class="input-group mb-4">
-          <label class="form-label me-4" for="lastname">Фамилия:</label>
-          <input id="lastname" class="form-control" value="{{old('lastname')}}" name="lastname" type="text" placeholder="Введите фамилию"
-            required>
         </div>
         <div class="input-group mb-4">
           <label class="form-label me-4" for="patronymic">Отчество:</label>
@@ -39,7 +39,7 @@
             placeholder="Подтвердите пароль" required>
         </div>
         <div class="input-group mb-4">
-          <input id="agree" class="form-check-input p-2" name="agree" type="checkbox">
+          <input id="agree" class="form-check-input p-2" name="agree" type="checkbox" required>
           <label class="form-check-label ms-3" for="agree">Даю согласие на обработку персональных данных</label>
         </div>
 				@if($errors->any())

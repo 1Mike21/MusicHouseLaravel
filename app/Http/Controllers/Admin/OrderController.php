@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-			$orders = Order::whereNot('status', 'В корзине')->where('user_id', Auth::user()->id)->get();
-      return view('orders.index', compact('orders'));
+			$orders = Order::whereNot('status', 'В корзине')->get();
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -31,21 +32,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        if(Hash::check($request->password, Auth::user()->password)) {
-					$order = Auth::user()->orders()->firstWhere('status', 'В корзине');
-					$order->status = 'Новый';
-					$order->save();
-
-					$order = new Order;
-					$order->user_id = Auth::user()->id;
-					$order->status = 'В корзине';
-					$order->save();
-
-					return redirect()->route('orders.index')->with('info', 'Заказ отправлен');
-				}
-				else {
-					return redirect()->back()->with('info', 'Пароль неверный');
-				}
+        //
     }
 
     /**

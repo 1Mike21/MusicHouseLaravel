@@ -1,10 +1,10 @@
-@extends('layouts.app')
-
+@extends('layouts.admin')
+@section('title', 'Создание категории')
 @section('content')
 	<div class="row min-vh-100 align-items-center">
     <div class="col-12">
 			<h1 class="text-center mb-4">Добавление категории</h1>
-      <form method="POST" class="w-50 mx-auto" action="{{ route('categories.store') }}">
+      <form method="POST" class="w-50 mx-auto" action="{{ route('admin.categories.store') }}">
         @csrf
         <div class="mb-3">
           <label for="title" class="form-label">Название категории:</label>

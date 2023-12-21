@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', 'Товар: ' . $product->title)
+@extends('layouts.admin')
+@section('title', 'Товар {{$product->title}}')
 @section('content')
   <div class="row">
     <div class="col-12 text-center pt-4">
@@ -42,11 +42,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-        <div class="col-12">
-          @if (Auth::check())
-            <a href="{{ route('cart.store', ['product_id' => $product->id]) }}" class="btn btn-success w-25">В корзину</a>
-          @endif
         </div>
       </div>
     </div>

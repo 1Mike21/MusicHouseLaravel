@@ -24,3 +24,7 @@ body {
 #table_category tr td {
 	text-align: center;
 }
+
+.nav-link {
+	color: white;
+}

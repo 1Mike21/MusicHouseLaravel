@@ -16,7 +16,7 @@ class AuthController extends Controller
 	public function register(Request $request) {
 		$request->validate([
 			'name' => 'regex:/^[А-ЯЁа-яё -]+$/u|required',
-			'lastname' => 'regex:/^[А-ЯЁа-яё -]+$/u|required',
+			'surname' => 'regex:/^[А-ЯЁа-яё -]+$/u|required',
 			'patronymic' => 'regex:/^[А-ЯЁа-яё -]+$/u|nullable',
 			'login' => 'regex:/^[A-Za-z0-9-]+$/u|required|unique:users',
 			'email' => 'required|unique:users',
@@ -26,7 +26,7 @@ class AuthController extends Controller
 		$user = new User;
 
 		$user->name = $request->name;
-		$user->surname = $request->lastname;
+		$user->surname = $request->surname;
 		$user->patronymic = $request->patronymic;
 		$user->login = $request->login;
 		$user->email = $request->email;

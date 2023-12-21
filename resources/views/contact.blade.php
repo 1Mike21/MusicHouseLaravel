@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Контакты')
 @section('content')
 	<div class="row justify-content-between mt-5 align-items-center">
 			<div class="col-6">
